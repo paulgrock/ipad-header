@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<title>iPad Header</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		nav {
+			height: 60px;
+			border-bottom: 1px solid rgba(68, 68, 68, 1);
+			background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(245, 245, 247, 1)), to(rgba(193, 196, 206, 1)));
+			line-height: 60px;
+			font-family: Helvetica;
+		}
+		ul {
+			list-style-type: none;
+		}
+		a {
+			text-decoration: none;
+		}
+		nav > a:not(.book):active:before {
+			content: "";
+			width: 30px;
+			height: 30px;
+			border-radius: 50px;
+			position: absolute;
+			top: -10px;
+			left: 0;
+			display: block;
+			background-image: -webkit-gradient(radial, 50% 50%, 5, 100% 100%, 50, from(rgba(255, 255, 255, .4)), to(rgba(255, 255, 255, .1)));
+		}
+		nav > a {
+			display: block;
+			height: 0;
+			width: 0;
+			text-indent: -9999px;
+			float: left;
+			margin: 20px 10px 0;
+			position: relative;
+			text-decoration: none;
+		}
+		
+		nav > a:nth-of-type(1) {
+			border-top: 10px solid transparent;
+			border-bottom: 10px solid transparent;
+			border-right: 20px solid rgba(183, 187, 195, 1);
+		}
+		nav > a:nth-of-type(1):active:before {
+			left: -3px;
+			top: -14px;
+		}
+		nav > a:nth-of-type(2) {
+			border-top: 10px solid transparent;
+			border-bottom: 10px solid transparent;
+			border-left: 20px solid rgba(183, 187, 195, 1);
+			margin-left: 20px;
+		}
+		nav > a:nth-of-type(2):active:before {
+			left: -28px;
+			top: -14px;
+		}
+		nav > a:nth-of-type(3) {
+			border: 2px solid rgba(106, 113, 120, 1);
+			width: 10px;
+			height: 10px;
+			margin: 23px 25px 0 13px;
+			border-radius: 2px;
+		}
+		nav > a:nth-of-type(3):active:before {
+			left: -8px;
+			top: -8px;
+		}
+		nav > a:nth-of-type(3):after {
+			content: "2";
+			color: white;
+			position: absolute;
+			background: rgba(106, 113, 120, 1);
+			text-indent: 0;
+			line-height: 9px;
+			font-size: 11px;
+			text-align: center;
+			top: 2px;
+			bottom: -6px;
+			left: 2px;
+			right: -6px;
+			border: 2px solid rgba(106, 113, 120, 1);
+			border-radius: 2px;
+		}
+		nav a.book {
+			border-right: 2px solid rgba(106, 113, 120, 1);
+			border-left: 2px solid rgba(106, 113, 120, 1);
+			height: 14px;
+			width: 20px;
+			text-indent: 0;
+			color: rgba(106, 113, 120, 1);
+			line-height: 15px;
+			font-size: 17px;
+			text-align: center;
+			margin-top: 22px;
+			text-shadow: 1px 0 0 rgba(106, 113, 120, 1);
+		}
+		nav a.book:before {
+			content: ") )";
+			letter-spacing: 2px;
+			position: absolute;
+			display: block;
+			width: 25px;
+			-webkit-transform: rotate(-90deg);
+			font-size: 10px;
+			font-weight: bold;
+			left: -8px;
+			top: -4px;
+			bottom: 0;
+		}
+		nav a.book:active:before, nav a.book:active:after {
+			background: -webkit-gradient(radial, 50% 50%, 5, 100% 100%, 50, from(rgba(255, 255, 255, .4)), to(rgba(255, 255, 255, .1)));
+			border-radius: 50px;
+		}
+		nav a.book:after {
+			content: ") )";
+			letter-spacing: 2px;
+			position: absolute;
+			display: block;
+			width: 25px;
+			-webkit-transform: rotate(-90deg);
+			font-size: 10px;
+			font-weight: bold;
+			left: 3px;
+			top: -3px;
+			bottom: 0px;
+		}
+		#history, #multi {
+			opacity: 0;
+			text-indent: 0;
+			-webkit-transition: opacity .3s;
+			position: absolute;
+			width: 330px;
+			z-index: 100;
+			top: 70px;
+			left: 12px;
+			font-weight: bold;
+			color: white;
+			border: 1px solid rgba(0, 0, 0, .7);
+			border-radius: 10px;
+			font: 14px/17px Helvetica;
+		}
+		#history:target {
+			opacity: 1;
+		}
+		#history h1 {
+			border-radius: 10px 10px 0 0;
+			height: 45px;
+			background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(149, 151, 159, 1)), to(rgba(0, 0, 0, 1)), color-stop(.5, rgba(11, 20, 41, 1)));
+			font-size: 20px;
+			line-height: 45px;
+			font-weight: normal;
+			text-shadow: inset 0 2px 0 rgba(0, 0, 0, .7);
+			text-align: center;
+		}
+		#history h1:before, #multi li:after {
+			content: "";
+			margin: auto;
+			position: absolute;
+			top: -20px;
+			left: 132px;
+			border-bottom: 20px solid rgba(126, 130, 142, 1);
+			border-right: 20px solid transparent;
+			border-left: 20px solid transparent;
+		}
+		#history h1:after {
+			content: "";
+			margin: auto;
+			position: absolute;
+			top: -30px;
+			left: 175px;
+			-webkit-box-shadow: 0 -10px 50px black;
+		}
+		#history .button {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			text-align: center;
+			border-radius: 5px;
+			width: 45px;
+			-webkit-box-shadow: inset 2px 2px 2px rgba(68, 68, 68, .9), inset -2px -2px 2px rgba(68, 68, 68, .9);
+			background: transparent;
+			height: 30px;
+			line-height: 30px;
+			color: white;
+			text-decoration: none;
+		}
+		#history ul {
+			border: 6px solid rgba(0, 0, 0, .8);
+			border-radius: 0 0 10px 10px;
+			background: black;
+		} 
+		#history li {
+			background: white;
+			height: 45px;
+			border-bottom: 1px solid rgba(68, 68, 68, 1);
+		}
+		#history li:nth-of-type(1) { 
+			-webkit-box-shadow: inset 0 2px 2px rgba(0, 0, 0, .4);
+			border-radius: 5px 5px 0 0;
+		}
+		#history li:nth-last-of-type(1) { 
+			border-radius: 0 0 5px 5px;
+		}
+		.next:after {
+			content: ">";
+			position: absolute;
+			right: 12px;
+			font: bold 16px/45px Verdana;
+		}
+		#history li a {	
+			color: rgba(0, 0, 0, 1);
+			font-size: 20px;
+			line-height: 45px;
+			text-align: left;
+			padding: 0 55px;
+			font-weight: bold;
+		}
+		nav > a:nth-of-type(5) {
+			border: 2px solid rgba(106, 113, 120, 1);
+			height: 10px;
+			width: 20px;
+		
+		}
+		nav > a:nth-of-type(5):active:before {
+			left: -5px;
+		}
+		#multi {
+			background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(146, 148, 156, 1)), to(rgba(0, 0, 0, 1)), color-stop(.1, rgba(20, 28, 48, 1)));
+			left: 65px;
+			width: 282px;
+			border-radius: 5px;
+		}
+		#multi:target {
+			opacity: 1;
+		}
+		#multi li a {
+			display: block;
+			text-align: center;
+			font-weight: bold; 
+			font-size: 18px;
+			line-height: 40px;
+			height: 40px;
+			border-radius: 5px;
+			color: black;
+			width: 270px;
+			margin: 12px auto 0;
+			background: white;
+			background: -webkit-gradient(linear, 0% 50%, 0% 0%, from(rgba(237, 239, 243, 1)), to(#fff), color-stop(1%, rgba(255, 255, 255, 1)));
+		}
+		#multi li:after {
+			left: 122px;
+		}
+		#multi li:nth-last-of-type(1) a {
+			margin-bottom: 12px;
+		}
+		nav form {
+			float: right;
+			margin-right: 12px;
+		}
+		nav input {
+			height: 30px;
+			font-size: 12.5px;
+			line-height: 12.5px;
+			-webkit-box-shadow: inset 0 1px 1px rgba(68, 68, 68, .7);
+		}
+		nav input[type="url"] {
+			padding: 0px 4px;
+			border-radius: 5px;
+			width: 315px;
+			margin-right: 7px;
+		}
+		nav input[type=text] {
+			border-radius: 30px;
+			width: 180px;
+			-webkit-background-clip: padding-box;
+		}
+		@media screen and (max-width:640px){
+		                html, body{
+		                height:100%;    
+		                }
+		             nav{
+		                position:absolute;
+		                bottom:0;       
+		                width:100%;
+		             }
+		    
+		             nav form{
+		                position:absolute;
+		                left:0;
+		                bottom:60px;
+		                width:100%;
+		             }
+		             nav input[type=text],
+		             nav input[type="url"]{
+		             width:45%; 
+		             }
+		             #history, #multi {
+		             top:auto;
+		             bottom:70px;   
+		             }
+		             #history h1:before, #multi li:after {
+		              position: absolute;
+		              top:auto;
+		              bottom: -20px;
+		          
+		              border-bottom:none;
+		              border-top: 20px solid rgba(126, 130, 142, 1);
+		              border-right: 20px solid transparent;
+		              border-left: 20px solid transparent;
+		           }
+		}
+	</style>
+</head>
+<body id="main">
+	<nav>
+		<a href="">Back</a>
+		<a href="">Forward</a>
+		<a href="">Tabs</a>
+		<a href="#history" class="book">|</a>
+		<section id="history">
+			<h1>Bookmarks</h1>
+			<a href="" class="button">Edit</a>
+			<ul>
+				<li><a href="" class="next">History</a></li>
+				<li><a href="" class="next">Bookmarks Bar</a></li>
+				<li><a href="http://" class="">Apple</a></li>
+				<li><a href="http://" class="">Yahoo!</a></li>
+				<li><a href="http://" class="">Google</a></li>
+				<li><a href="http://" class="">iPad User Guide</a></li>
+			</ul>
+		</section>
+		<a href="#multi">Multi</a>
+		<section id="multi">
+			<ul>
+				<li><a href="" class="">Add Bookmark</a></li>
+				<li><a href="" class="">Add to Home Screen</a></li>
+				<li><a href="" class="">Print</a></li>
+			</ul>
+		</section>
+		<form action="">
+			<input type="url" />
+			<input type="text" />
+		</form>
+	</nav>
+</body>
+</html>
